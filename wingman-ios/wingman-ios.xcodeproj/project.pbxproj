@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC86FF1719857F4B00AF8C4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF1619857F4B00AF8C4A /* Foundation.framework */; };
+		DC86FF1919857F4B00AF8C4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF1819857F4B00AF8C4A /* CoreGraphics.framework */; };
+		DC86FF1B19857F4B00AF8C4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF1A19857F4B00AF8C4A /* UIKit.framework */; };
+		DC86FF2119857F4B00AF8C4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF1F19857F4B00AF8C4A /* InfoPlist.strings */; };
+		DC86FF2319857F4B00AF8C4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF2219857F4B00AF8C4A /* main.m */; };
+		DC86FF2719857F4B00AF8C4A /* wingmanAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF2619857F4B00AF8C4A /* wingmanAppDelegate.m */; };
+		DC86FF2A19857F4B00AF8C4A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF2819857F4B00AF8C4A /* Main_iPhone.storyboard */; };
+		DC86FF2D19857F4B00AF8C4A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF2B19857F4B00AF8C4A /* Main_iPad.storyboard */; };
+		DC86FF3019857F4B00AF8C4A /* wingmanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF2F19857F4B00AF8C4A /* wingmanViewController.m */; };
+		DC86FF3219857F4B00AF8C4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF3119857F4B00AF8C4A /* Images.xcassets */; };
+		DC86FF3919857F4B00AF8C4A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF3819857F4B00AF8C4A /* XCTest.framework */; };
+		DC86FF3A19857F4B00AF8C4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF1619857F4B00AF8C4A /* Foundation.framework */; };
+		DC86FF3B19857F4B00AF8C4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF1A19857F4B00AF8C4A /* UIKit.framework */; };
+		DC86FF4319857F4B00AF8C4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF4119857F4B00AF8C4A /* InfoPlist.strings */; };
+		DC86FF4519857F4B00AF8C4A /* wingman_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF4419857F4B00AF8C4A /* wingman_iosTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC86FF3C19857F4B00AF8C4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC86FF0B19857F4A00AF8C4A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC86FF1219857F4B00AF8C4A;
+			remoteInfo = "wingman-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC86FF1319857F4B00AF8C4A /* wingman-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wingman-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC86FF1619857F4B00AF8C4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DC86FF1819857F4B00AF8C4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DC86FF1A19857F4B00AF8C4A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DC86FF1E19857F4B00AF8C4A /* wingman-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wingman-ios-Info.plist"; sourceTree = "<group>"; };
+		DC86FF2019857F4B00AF8C4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DC86FF2219857F4B00AF8C4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DC86FF2419857F4B00AF8C4A /* wingman-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wingman-ios-Prefix.pch"; sourceTree = "<group>"; };
+		DC86FF2519857F4B00AF8C4A /* wingmanAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wingmanAppDelegate.h; sourceTree = "<group>"; };
+		DC86FF2619857F4B00AF8C4A /* wingmanAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wingmanAppDelegate.m; sourceTree = "<group>"; };
+		DC86FF2919857F4B00AF8C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		DC86FF2C19857F4B00AF8C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		DC86FF2E19857F4B00AF8C4A /* wingmanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wingmanViewController.h; sourceTree = "<group>"; };
+		DC86FF2F19857F4B00AF8C4A /* wingmanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wingmanViewController.m; sourceTree = "<group>"; };
+		DC86FF3119857F4B00AF8C4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DC86FF3719857F4B00AF8C4A /* wingman-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "wingman-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC86FF3819857F4B00AF8C4A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DC86FF4019857F4B00AF8C4A /* wingman-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wingman-iosTests-Info.plist"; sourceTree = "<group>"; };
+		DC86FF4219857F4B00AF8C4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DC86FF4419857F4B00AF8C4A /* wingman_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wingman_iosTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC86FF1019857F4B00AF8C4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF1919857F4B00AF8C4A /* CoreGraphics.framework in Frameworks */,
+				DC86FF1B19857F4B00AF8C4A /* UIKit.framework in Frameworks */,
+				DC86FF1719857F4B00AF8C4A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC86FF3419857F4B00AF8C4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF3919857F4B00AF8C4A /* XCTest.framework in Frameworks */,
+				DC86FF3B19857F4B00AF8C4A /* UIKit.framework in Frameworks */,
+				DC86FF3A19857F4B00AF8C4A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC86FF0A19857F4A00AF8C4A = {
+			isa = PBXGroup;
+			children = (
+				DC86FF1C19857F4B00AF8C4A /* wingman-ios */,
+				DC86FF3E19857F4B00AF8C4A /* wingman-iosTests */,
+				DC86FF1519857F4B00AF8C4A /* Frameworks */,
+				DC86FF1419857F4B00AF8C4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC86FF1419857F4B00AF8C4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF1319857F4B00AF8C4A /* wingman-ios.app */,
+				DC86FF3719857F4B00AF8C4A /* wingman-iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC86FF1519857F4B00AF8C4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF1619857F4B00AF8C4A /* Foundation.framework */,
+				DC86FF1819857F4B00AF8C4A /* CoreGraphics.framework */,
+				DC86FF1A19857F4B00AF8C4A /* UIKit.framework */,
+				DC86FF3819857F4B00AF8C4A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC86FF1C19857F4B00AF8C4A /* wingman-ios */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF2519857F4B00AF8C4A /* wingmanAppDelegate.h */,
+				DC86FF2619857F4B00AF8C4A /* wingmanAppDelegate.m */,
+				DC86FF2819857F4B00AF8C4A /* Main_iPhone.storyboard */,
+				DC86FF2B19857F4B00AF8C4A /* Main_iPad.storyboard */,
+				DC86FF2E19857F4B00AF8C4A /* wingmanViewController.h */,
+				DC86FF2F19857F4B00AF8C4A /* wingmanViewController.m */,
+				DC86FF3119857F4B00AF8C4A /* Images.xcassets */,
+				DC86FF1D19857F4B00AF8C4A /* Supporting Files */,
+			);
+			path = "wingman-ios";
+			sourceTree = "<group>";
+		};
+		DC86FF1D19857F4B00AF8C4A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF1E19857F4B00AF8C4A /* wingman-ios-Info.plist */,
+				DC86FF1F19857F4B00AF8C4A /* InfoPlist.strings */,
+				DC86FF2219857F4B00AF8C4A /* main.m */,
+				DC86FF2419857F4B00AF8C4A /* wingman-ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC86FF3E19857F4B00AF8C4A /* wingman-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF4419857F4B00AF8C4A /* wingman_iosTests.m */,
+				DC86FF3F19857F4B00AF8C4A /* Supporting Files */,
+			);
+			path = "wingman-iosTests";
+			sourceTree = "<group>";
+		};
+		DC86FF3F19857F4B00AF8C4A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC86FF4019857F4B00AF8C4A /* wingman-iosTests-Info.plist */,
+				DC86FF4119857F4B00AF8C4A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC86FF1219857F4B00AF8C4A /* wingman-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC86FF4819857F4B00AF8C4A /* Build configuration list for PBXNativeTarget "wingman-ios" */;
+			buildPhases = (
+				DC86FF0F19857F4B00AF8C4A /* Sources */,
+				DC86FF1019857F4B00AF8C4A /* Frameworks */,
+				DC86FF1119857F4B00AF8C4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "wingman-ios";
+			productName = "wingman-ios";
+			productReference = DC86FF1319857F4B00AF8C4A /* wingman-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC86FF3619857F4B00AF8C4A /* wingman-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC86FF4B19857F4B00AF8C4A /* Build configuration list for PBXNativeTarget "wingman-iosTests" */;
+			buildPhases = (
+				DC86FF3319857F4B00AF8C4A /* Sources */,
+				DC86FF3419857F4B00AF8C4A /* Frameworks */,
+				DC86FF3519857F4B00AF8C4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC86FF3D19857F4B00AF8C4A /* PBXTargetDependency */,
+			);
+			name = "wingman-iosTests";
+			productName = "wingman-iosTests";
+			productReference = DC86FF3719857F4B00AF8C4A /* wingman-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC86FF0B19857F4A00AF8C4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = wingman;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = TukoApps;
+				TargetAttributes = {
+					DC86FF3619857F4B00AF8C4A = {
+						TestTargetID = DC86FF1219857F4B00AF8C4A;
+					};
+				};
+			};
+			buildConfigurationList = DC86FF0E19857F4A00AF8C4A /* Build configuration list for PBXProject "wingman-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC86FF0A19857F4A00AF8C4A;
+			productRefGroup = DC86FF1419857F4B00AF8C4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC86FF1219857F4B00AF8C4A /* wingman-ios */,
+				DC86FF3619857F4B00AF8C4A /* wingman-iosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC86FF1119857F4B00AF8C4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF2D19857F4B00AF8C4A /* Main_iPad.storyboard in Resources */,
+				DC86FF3219857F4B00AF8C4A /* Images.xcassets in Resources */,
+				DC86FF2A19857F4B00AF8C4A /* Main_iPhone.storyboard in Resources */,
+				DC86FF2119857F4B00AF8C4A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC86FF3519857F4B00AF8C4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF4319857F4B00AF8C4A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC86FF0F19857F4B00AF8C4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF3019857F4B00AF8C4A /* wingmanViewController.m in Sources */,
+				DC86FF2719857F4B00AF8C4A /* wingmanAppDelegate.m in Sources */,
+				DC86FF2319857F4B00AF8C4A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC86FF3319857F4B00AF8C4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC86FF4519857F4B00AF8C4A /* wingman_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC86FF3D19857F4B00AF8C4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC86FF1219857F4B00AF8C4A /* wingman-ios */;
+			targetProxy = DC86FF3C19857F4B00AF8C4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC86FF1F19857F4B00AF8C4A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC86FF2019857F4B00AF8C4A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DC86FF2819857F4B00AF8C4A /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC86FF2919857F4B00AF8C4A /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		DC86FF2B19857F4B00AF8C4A /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC86FF2C19857F4B00AF8C4A /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		DC86FF4119857F4B00AF8C4A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC86FF4219857F4B00AF8C4A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC86FF4619857F4B00AF8C4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC86FF4719857F4B00AF8C4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC86FF4919857F4B00AF8C4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wingman-ios/wingman-ios-Prefix.pch";
+				INFOPLIST_FILE = "wingman-ios/wingman-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DC86FF4A19857F4B00AF8C4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wingman-ios/wingman-ios-Prefix.pch";
+				INFOPLIST_FILE = "wingman-ios/wingman-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DC86FF4C19857F4B00AF8C4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/wingman-ios.app/wingman-ios";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wingman-ios/wingman-ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "wingman-iosTests/wingman-iosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DC86FF4D19857F4B00AF8C4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/wingman-ios.app/wingman-ios";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wingman-ios/wingman-ios-Prefix.pch";
+				INFOPLIST_FILE = "wingman-iosTests/wingman-iosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC86FF0E19857F4A00AF8C4A /* Build configuration list for PBXProject "wingman-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC86FF4619857F4B00AF8C4A /* Debug */,
+				DC86FF4719857F4B00AF8C4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC86FF4819857F4B00AF8C4A /* Build configuration list for PBXNativeTarget "wingman-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC86FF4919857F4B00AF8C4A /* Debug */,
+				DC86FF4A19857F4B00AF8C4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DC86FF4B19857F4B00AF8C4A /* Build configuration list for PBXNativeTarget "wingman-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC86FF4C19857F4B00AF8C4A /* Debug */,
+				DC86FF4D19857F4B00AF8C4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC86FF0B19857F4A00AF8C4A /* Project object */;
+}
