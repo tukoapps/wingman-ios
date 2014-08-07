@@ -15,13 +15,21 @@
 		DC86FF6B19857F9A00AF8C4A /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF6A19857F9A00AF8C4A /* WMAppDelegate.m */; };
 		DC86FF6E19857F9A00AF8C4A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF6C19857F9A00AF8C4A /* Main_iPhone.storyboard */; };
 		DC86FF7119857F9A00AF8C4A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF6F19857F9A00AF8C4A /* Main_iPad.storyboard */; };
-		DC86FF7419857F9A00AF8C4A /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF7319857F9A00AF8C4A /* WMViewController.m */; };
 		DC86FF7619857F9A00AF8C4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF7519857F9A00AF8C4A /* Images.xcassets */; };
 		DC86FF7D19857F9A00AF8C4A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF7C19857F9A00AF8C4A /* XCTest.framework */; };
 		DC86FF7E19857F9A00AF8C4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF5A19857F9A00AF8C4A /* Foundation.framework */; };
 		DC86FF7F19857F9A00AF8C4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF5E19857F9A00AF8C4A /* UIKit.framework */; };
 		DC86FF8719857F9A00AF8C4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF8519857F9A00AF8C4A /* InfoPlist.strings */; };
 		DC86FF8919857F9A00AF8C4A /* WingManTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF8819857F9A00AF8C4A /* WingManTests.m */; };
+		DC86FF9419857FC900AF8C4A /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */; };
+		DC86FF961985818C00AF8C4A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF951985818C00AF8C4A /* FacebookSDK.framework */; };
+		DCFEA2E91993C6FB001C7007 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFEA2E81993C6FB001C7007 /* CoreLocation.framework */; };
+		DCFEA2EE19940114001C7007 /* WMError.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEA2ED19940114001C7007 /* WMError.m */; };
+		DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF1FB1985B75C00E93EDE /* SWRevealViewController.m */; };
+		DCFEF2061985C2B100E93EDE /* WMHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */; };
+		DCFEF20C1985C60A00E93EDE /* WMSideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */; };
+		DCFEF2151985D42900E93EDE /* WMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF2141985D42900E93EDE /* WMNetworkManager.m */; };
+		DCFEF2181985D91000E93EDE /* WMBarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF2171985D91000E93EDE /* WMBarInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,14 +55,28 @@
 		DC86FF6A19857F9A00AF8C4A /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
 		DC86FF6D19857F9A00AF8C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DC86FF7019857F9A00AF8C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		DC86FF7219857F9A00AF8C4A /* WMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMViewController.h; sourceTree = "<group>"; };
-		DC86FF7319857F9A00AF8C4A /* WMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
 		DC86FF7519857F9A00AF8C4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DC86FF7B19857F9A00AF8C4A /* WingManTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WingManTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC86FF7C19857F9A00AF8C4A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC86FF8419857F9A00AF8C4A /* WingManTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WingManTests-Info.plist"; sourceTree = "<group>"; };
 		DC86FF8619857F9A00AF8C4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DC86FF8819857F9A00AF8C4A /* WingManTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WingManTests.m; sourceTree = "<group>"; };
+		DC86FF9219857FC900AF8C4A /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
+		DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
+		DC86FF951985818C00AF8C4A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		DCFEA2E81993C6FB001C7007 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DCFEA2EC19940114001C7007 /* WMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMError.h; sourceTree = "<group>"; };
+		DCFEA2ED19940114001C7007 /* WMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMError.m; sourceTree = "<group>"; };
+		DCFEF1FA1985B75C00E93EDE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		DCFEF1FB1985B75C00E93EDE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		DCFEF2041985C2B100E93EDE /* WMHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHomeTableViewController.h; sourceTree = "<group>"; };
+		DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMHomeTableViewController.m; sourceTree = "<group>"; };
+		DCFEF20A1985C60A00E93EDE /* WMSideBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSideBarTableViewController.h; sourceTree = "<group>"; };
+		DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSideBarTableViewController.m; sourceTree = "<group>"; };
+		DCFEF2131985D42900E93EDE /* WMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNetworkManager.h; sourceTree = "<group>"; };
+		DCFEF2141985D42900E93EDE /* WMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNetworkManager.m; sourceTree = "<group>"; };
+		DCFEF2161985D91000E93EDE /* WMBarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBarInfo.h; sourceTree = "<group>"; };
+		DCFEF2171985D91000E93EDE /* WMBarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBarInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +84,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFEA2E91993C6FB001C7007 /* CoreLocation.framework in Frameworks */,
 				DC86FF5D19857F9A00AF8C4A /* CoreGraphics.framework in Frameworks */,
+				DC86FF961985818C00AF8C4A /* FacebookSDK.framework in Frameworks */,
 				DC86FF5F19857F9A00AF8C4A /* UIKit.framework in Frameworks */,
 				DC86FF5B19857F9A00AF8C4A /* Foundation.framework in Frameworks */,
 			);
@@ -103,6 +127,8 @@
 		DC86FF5919857F9A00AF8C4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCFEA2E81993C6FB001C7007 /* CoreLocation.framework */,
+				DC86FF951985818C00AF8C4A /* FacebookSDK.framework */,
 				DC86FF5A19857F9A00AF8C4A /* Foundation.framework */,
 				DC86FF5C19857F9A00AF8C4A /* CoreGraphics.framework */,
 				DC86FF5E19857F9A00AF8C4A /* UIKit.framework */,
@@ -118,8 +144,19 @@
 				DC86FF6A19857F9A00AF8C4A /* WMAppDelegate.m */,
 				DC86FF6C19857F9A00AF8C4A /* Main_iPhone.storyboard */,
 				DC86FF6F19857F9A00AF8C4A /* Main_iPad.storyboard */,
-				DC86FF7219857F9A00AF8C4A /* WMViewController.h */,
-				DC86FF7319857F9A00AF8C4A /* WMViewController.m */,
+				DCFEF1FD1985B91800E93EDE /* Library */,
+				DC86FF9219857FC900AF8C4A /* WMLoginViewController.h */,
+				DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */,
+				DCFEF2041985C2B100E93EDE /* WMHomeTableViewController.h */,
+				DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */,
+				DCFEF2131985D42900E93EDE /* WMNetworkManager.h */,
+				DCFEF2141985D42900E93EDE /* WMNetworkManager.m */,
+				DCFEF2161985D91000E93EDE /* WMBarInfo.h */,
+				DCFEF2171985D91000E93EDE /* WMBarInfo.m */,
+				DCFEF20A1985C60A00E93EDE /* WMSideBarTableViewController.h */,
+				DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */,
+				DCFEA2EC19940114001C7007 /* WMError.h */,
+				DCFEA2ED19940114001C7007 /* WMError.m */,
 				DC86FF7519857F9A00AF8C4A /* Images.xcassets */,
 				DC86FF6119857F9A00AF8C4A /* Supporting Files */,
 			);
@@ -153,6 +190,15 @@
 				DC86FF8519857F9A00AF8C4A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCFEF1FD1985B91800E93EDE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				DCFEF1FA1985B75C00E93EDE /* SWRevealViewController.h */,
+				DCFEF1FB1985B75C00E93EDE /* SWRevealViewController.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC86FF7419857F9A00AF8C4A /* WMViewController.m in Sources */,
+				DCFEA2EE19940114001C7007 /* WMError.m in Sources */,
 				DC86FF6B19857F9A00AF8C4A /* WMAppDelegate.m in Sources */,
+				DCFEF2061985C2B100E93EDE /* WMHomeTableViewController.m in Sources */,
+				DCFEF20C1985C60A00E93EDE /* WMSideBarTableViewController.m in Sources */,
+				DCFEF2181985D91000E93EDE /* WMBarInfo.m in Sources */,
+				DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */,
+				DC86FF9419857FC900AF8C4A /* WMLoginViewController.m in Sources */,
+				DCFEF2151985D42900E93EDE /* WMNetworkManager.m in Sources */,
 				DC86FF6719857F9A00AF8C4A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +443,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WingMan/WingMan-Prefix.pch";
 				INFOPLIST_FILE = "WingMan/WingMan-Info.plist";
@@ -404,6 +460,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WingMan/WingMan-Prefix.pch";
 				INFOPLIST_FILE = "WingMan/WingMan-Info.plist";
@@ -471,6 +531,7 @@
 				DC86FF8E19857F9A00AF8C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC86FF8F19857F9A00AF8C4A /* Build configuration list for PBXNativeTarget "WingManTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +540,7 @@
 				DC86FF9119857F9A00AF8C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

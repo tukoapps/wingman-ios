@@ -10,4 +10,12 @@
 
 @interface WMError : NSError
 
+// API data error conditions
++(NSError *)missingIdError;
++(NSError *)missingNameError;
++(NSError *)missingLocationError;
++(NSError *)missingUsersError;
++(NSError *)missingRatingError;
++(NSError *)missingImageError;
+
 @end

@@ -9,16 +9,25 @@
 #import "WMHomeTableViewController.h"
 
 @interface WMHomeTableViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+@property (strong, nonatomic) NSArray *barInfo;
+@property (strong, nonatomic) WMNetworkManager *networkManager;
 
 @end
 
 @implementation WMHomeTableViewController
 
+-(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo
+{
+    _barInfo = barInfo;
+    [self.tableView reloadData];
+    NSLog(@"got data");
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,12 +35,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.sideBarButton.target = self.revealViewController;
+    self.sideBarButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self initSideBar];
+            _barInfo = [[NSArray alloc] init];
+        self.networkManager = [[WMNetworkManager alloc] init];
+        self.networkManager.delegate = self;
+        [self.networkManager requestAllBars];
+}
+-(void)initSideBar
+{
+    self.sideBarButton.target = self.revealViewController;
+    self.sideBarButton.action = @selector(revealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,28 +61,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.barInfo count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bar_cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    if ([self.barInfo count] > 0) {
+        WMBarInfo *barInfo = [self.barInfo objectAtIndex:indexPath.row];
+        cell.textLabel.text = barInfo.name;
+    }
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

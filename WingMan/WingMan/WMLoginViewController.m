@@ -7,8 +7,10 @@
 //
 
 #import "WMLoginViewController.h"
+#import "WMHomeTableViewController.h"
 
 @interface WMLoginViewController ()
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 @end
 
@@ -18,7 +20,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,7 +27,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initLoginView];
+    self.loginView.delegate = self;
+}
+
+-(void)initFBLoginButton
+{
+    // TODO: determine what permissions are necessary
+    self.loginView.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+}
+
+-(void)initLoginView
+{
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"launch-background.png"]]];
+}
+
+-(void)presentHomeView
+{
+    WMHomeTableViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeController"];
+    [self presentViewController:homeViewController animated:NO completion:nil];
+}
+
+-(void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
+{
+    [self presentHomeView];
+}
+
+-(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    [self initLoginView];
 }
 
 - (void)didReceiveMemoryWarning
