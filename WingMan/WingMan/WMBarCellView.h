@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WMBarInfo.h"
 
-@interface WMBarCellView : UIView
+@interface WMBarCellView : UITableViewCell
+
+-(void)setDataWithInfo:(WMBarInfo *)info;
+-(void)setLogoImage:(UIImage *)image;
 
 @end

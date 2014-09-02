@@ -17,11 +17,16 @@
 
 @implementation WMHomeTableViewController
 
--(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo
+-(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo error:(NSError *)error
 {
+    if (error != nil) {
+        if ([error.domain isEqualToString:NSURLErrorDomain]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Wingman is having trouble connecting to the internet right now. Please try to connect again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
     _barInfo = barInfo;
     [self.tableView reloadData];
-    NSLog(@"got data");
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -32,23 +37,37 @@
     return self;
 }
 
+-(UIImage *)getImageForCell:(WMBarCellView *)cell url:(NSString *)url
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [cell setLogoImage:[UIImage imageWithData:data]];
+    }];
+    return nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.sideBarButton.target = self.revealViewController;
-    self.sideBarButton.action = @selector(revealToggle:);
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     [self initSideBar];
-            _barInfo = [[NSArray alloc] init];
-        self.networkManager = [[WMNetworkManager alloc] init];
-        self.networkManager.delegate = self;
-        [self.networkManager requestAllBars];
+    _barInfo = [[NSArray alloc] init];
+    NSLog(@"%@", [[FBSession activeSession] accessTokenData]);
+    [self initNetworkManager];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMBarCell" bundle:nil] forCellReuseIdentifier:@"barCell"];
 }
+
 -(void)initSideBar
 {
     self.sideBarButton.target = self.revealViewController;
     self.sideBarButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+
+-(void)initNetworkManager
+{
+    self.networkManager = [[WMNetworkManager alloc] init];
+    self.networkManager.delegate = self;
+    [self.networkManager requestAllBars:@"10152715211682573"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,64 +93,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bar_cell" forIndexPath:indexPath];
-    
-    if ([self.barInfo count] > 0) {
-        WMBarInfo *barInfo = [self.barInfo objectAtIndex:indexPath.row];
-        cell.textLabel.text = barInfo.name;
-    }
+    WMBarCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"barCell" forIndexPath:indexPath];
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView willDisplayCell:(WMBarCellView *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if ([self.barInfo count] > 0) {
+        WMBarInfo *barInfo = [self.barInfo objectAtIndex:indexPath.row];
+        [self getImageForCell:cell url:barInfo.logoUrl];
+        [cell setDataWithInfo:barInfo];
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

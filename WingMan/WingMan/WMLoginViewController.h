@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "WMHomeTableViewController.h"
 
 @interface WMLoginViewController : UIViewController <FBLoginViewDelegate>
 

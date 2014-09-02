@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         _name = name;
-        _logo = [self getImageForUrl:logoUrl];
+        _logoUrl = logoUrl;
         _coordinates = coordinates;
         _uniqueId = identifier;
         _currentUsers = currentUsers;
@@ -26,13 +26,6 @@
     return self;
 }
 
--(UIImage *)getImageForUrl:(NSString *)url
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        _logo = [UIImage imageWithData:data];
-    }];
-    return nil;
-}
+
 
 @end

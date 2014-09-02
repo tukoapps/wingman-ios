@@ -13,9 +13,11 @@
 #import "SWRevealViewController.h"
 #import "WMNetworkManager.h"
 #import "WMBarInfo.h"
+#import "WMBarCellView.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface WMHomeTableViewController : UITableViewController <WMNetworkManagerDelegate>
 
--(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo;
+-(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo error:(NSError *)error;
 
 @end

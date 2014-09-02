@@ -5,28 +5,36 @@
 //  Created by Stephen Chan on 7/27/14.
 //  Copyright (c) 2014 TukoApps. All rights reserved.
 //
-//  This class handles network requests to the Rails API for WingMan.
+//  Singleton handling network requests to the Rails API for WingMan.
 
 #import "WMNetworkManager.h"
-#import "WMError.h"
 
 @implementation WMNetworkManager
 
-+(NSString *)url
++(NSString *)url:(NSString *)userId
 {
-    return @"http://www.get-wingman.com/api/v1/bars";
+    return [[@"http://www.get-wingman.com/api/v1/bars?user_id=" stringByAppendingString:userId] stringByAppendingString:@"&lat=42.0478396&lon=-87.6807489"];
 }
 
-- (void)requestAllBars
+- (void)requestAllBars:(NSString *)userId
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:WMNetworkManager.url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[WMNetworkManager url:userId]]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSArray *barInfoArray = [self processBarData:data];
-        [self.delegate NetworkManagerDidReturnInfo:barInfoArray];
+        if (connectionError) {
+            NSLog(@"%@", connectionError.description);
+            [self.delegate NetworkManagerDidReturnInfo:nil error:connectionError];
+        } else {
+            if (data) {
+                NSError *error;
+                NSArray *barInfoArray = [self processBarData:data error:&error];
+                NSLog(@"%d bars", [barInfoArray count]);
+                [self.delegate NetworkManagerDidReturnInfo:barInfoArray error:error];
+            }
+        }
     }];
 }
 
--(NSArray *)processBarData:(NSData *)data
+-(NSArray *)processBarData:(NSData *)data error:(NSError **)processError
 {
     NSMutableArray *barInfoArray = [[NSMutableArray alloc] init];
     NSArray *rawData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -36,11 +44,6 @@
         if (barInfo) {
             [barInfoArray addObject:barInfo];
         }
-    }
-    
-    if (error != nil) {
-        // TODO: better error handling
-        NSLog(@"some bars not displayed");
     }
     return barInfoArray;
 }
@@ -88,10 +91,10 @@
             *dataError = [WMError missingNameError];
             return false;
         }
-        //if (attributes[@"lat"] == nil || ![attributes[@"lat"] doubleValue] || attributes[@"lon"] == nil || ![attributes[@"lon"] doubleValue]) {
-            //*dataError = [WMError missingLocationError];
-            //return false;
-        //}
+        /*if (!(attributes[@"lat"] != nil && attributes[@"lon"] != nil && [attributes[@"lat"] doubleValue] && [attributes[@"lon"] doubleValue])) {
+            *dataError = [WMError missingLocationError];
+            return false;
+        }*/
         return true;
     }
     return false;

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+//NSString *WMURLErrorDomain = @"com.tukoapps.wingman";
+
 @interface WMError : NSError
 
 // API data error conditions

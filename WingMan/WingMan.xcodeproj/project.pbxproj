@@ -25,6 +25,8 @@
 		DC86FF961985818C00AF8C4A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF951985818C00AF8C4A /* FacebookSDK.framework */; };
 		DCFEA2E91993C6FB001C7007 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFEA2E81993C6FB001C7007 /* CoreLocation.framework */; };
 		DCFEA2EE19940114001C7007 /* WMError.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEA2ED19940114001C7007 /* WMError.m */; };
+		DCFEA2F319950BE1001C7007 /* WMBarCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEA2F219950BE1001C7007 /* WMBarCellView.m */; };
+		DCFEA2F819952401001C7007 /* WMBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCFEA2F719952401001C7007 /* WMBarCell.xib */; };
 		DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF1FB1985B75C00E93EDE /* SWRevealViewController.m */; };
 		DCFEF2061985C2B100E93EDE /* WMHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */; };
 		DCFEF20C1985C60A00E93EDE /* WMSideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */; };
@@ -67,6 +69,9 @@
 		DCFEA2E81993C6FB001C7007 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DCFEA2EC19940114001C7007 /* WMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMError.h; sourceTree = "<group>"; };
 		DCFEA2ED19940114001C7007 /* WMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMError.m; sourceTree = "<group>"; };
+		DCFEA2F119950BE1001C7007 /* WMBarCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBarCellView.h; sourceTree = "<group>"; };
+		DCFEA2F219950BE1001C7007 /* WMBarCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBarCellView.m; sourceTree = "<group>"; };
+		DCFEA2F719952401001C7007 /* WMBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WMBarCell.xib; path = ../WMBarCell.xib; sourceTree = "<group>"; };
 		DCFEF1FA1985B75C00E93EDE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		DCFEF1FB1985B75C00E93EDE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		DCFEF2041985C2B100E93EDE /* WMHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHomeTableViewController.h; sourceTree = "<group>"; };
@@ -145,18 +150,9 @@
 				DC86FF6C19857F9A00AF8C4A /* Main_iPhone.storyboard */,
 				DC86FF6F19857F9A00AF8C4A /* Main_iPad.storyboard */,
 				DCFEF1FD1985B91800E93EDE /* Library */,
-				DC86FF9219857FC900AF8C4A /* WMLoginViewController.h */,
-				DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */,
-				DCFEF2041985C2B100E93EDE /* WMHomeTableViewController.h */,
-				DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */,
-				DCFEF2131985D42900E93EDE /* WMNetworkManager.h */,
-				DCFEF2141985D42900E93EDE /* WMNetworkManager.m */,
-				DCFEF2161985D91000E93EDE /* WMBarInfo.h */,
-				DCFEF2171985D91000E93EDE /* WMBarInfo.m */,
-				DCFEF20A1985C60A00E93EDE /* WMSideBarTableViewController.h */,
-				DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */,
-				DCFEA2EC19940114001C7007 /* WMError.h */,
-				DCFEA2ED19940114001C7007 /* WMError.m */,
+				DCFEA2F419950BEB001C7007 /* View */,
+				DCFEA2F019950AAE001C7007 /* Controllers */,
+				DCFEA2EF19950A96001C7007 /* Model */,
 				DC86FF7519857F9A00AF8C4A /* Images.xcassets */,
 				DC86FF6119857F9A00AF8C4A /* Supporting Files */,
 			);
@@ -190,6 +186,42 @@
 				DC86FF8519857F9A00AF8C4A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCFEA2EF19950A96001C7007 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCFEA2EC19940114001C7007 /* WMError.h */,
+				DCFEA2ED19940114001C7007 /* WMError.m */,
+				DCFEF2131985D42900E93EDE /* WMNetworkManager.h */,
+				DCFEF2141985D42900E93EDE /* WMNetworkManager.m */,
+				DCFEF2161985D91000E93EDE /* WMBarInfo.h */,
+				DCFEF2171985D91000E93EDE /* WMBarInfo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DCFEA2F019950AAE001C7007 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DCFEF2041985C2B100E93EDE /* WMHomeTableViewController.h */,
+				DCFEF2051985C2B100E93EDE /* WMHomeTableViewController.m */,
+				DCFEF20A1985C60A00E93EDE /* WMSideBarTableViewController.h */,
+				DCFEF20B1985C60A00E93EDE /* WMSideBarTableViewController.m */,
+				DC86FF9219857FC900AF8C4A /* WMLoginViewController.h */,
+				DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DCFEA2F419950BEB001C7007 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DCFEA2F719952401001C7007 /* WMBarCell.xib */,
+				DCFEA2F119950BE1001C7007 /* WMBarCellView.h */,
+				DCFEA2F219950BE1001C7007 /* WMBarCellView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		DCFEF1FD1985B91800E93EDE /* Library */ = {
@@ -282,6 +314,7 @@
 				DC86FF7619857F9A00AF8C4A /* Images.xcassets in Resources */,
 				DC86FF6E19857F9A00AF8C4A /* Main_iPhone.storyboard in Resources */,
 				DC86FF6519857F9A00AF8C4A /* InfoPlist.strings in Resources */,
+				DCFEA2F819952401001C7007 /* WMBarCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +337,7 @@
 				DC86FF6B19857F9A00AF8C4A /* WMAppDelegate.m in Sources */,
 				DCFEF2061985C2B100E93EDE /* WMHomeTableViewController.m in Sources */,
 				DCFEF20C1985C60A00E93EDE /* WMSideBarTableViewController.m in Sources */,
+				DCFEA2F319950BE1001C7007 /* WMBarCellView.m in Sources */,
 				DCFEF2181985D91000E93EDE /* WMBarInfo.m in Sources */,
 				DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */,
 				DC86FF9419857FC900AF8C4A /* WMLoginViewController.m in Sources */,
