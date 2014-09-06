@@ -1,18 +1,17 @@
 //
-//  WMBarCellView.h
+//  WMTopBarCellView.h
 //  WingMan
 //
-//  Created by Stephen Chan on 8/8/14.
+//  Created by Stephen Chan on 9/6/14.
 //  Copyright (c) 2014 TukoApps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "WMBarCellView.h"
 #import "WMBar.h"
 
-@interface WMBarCellView : UITableViewCell
+@interface WMTopBarCellView : WMBarCellView
 
--(void)setDataWithInfo:(WMBar *)info;
 -(void)setLogoImage:(UIImage *)image;
--(UIImage *)getImage;
 
 @end

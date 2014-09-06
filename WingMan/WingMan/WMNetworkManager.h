@@ -19,10 +19,11 @@
 
 @interface WMNetworkManager : NSObject
 
+@property (strong, readonly)NSString *WMUserId;
 @property (strong, nonatomic) id<WMNetworkManagerDelegate> delegate;
 
-+(WMNetworkManager)
-+(NSString *)url:(NSString *)userId;
+// singleton declarator
++(WMNetworkManager *)sharedInstance;
 -(void)requestAllBars:(NSString *)userId;
 
 @end

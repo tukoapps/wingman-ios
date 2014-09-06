@@ -10,14 +10,16 @@
 //  API has not been fully developed yet.
 
 #import <UIKit/UIKit.h>
-#import "SWRevealViewController.h"
-#import "WMNetworkManager.h"
-#import "WMBarInfo.h"
-#import "WMBarCellView.h"
+#import <RestKit/RestKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "SWRevealViewController.h"
+#import "WMRestKitManager.h"
+#import "WMBar.h"
+#import "WMBarCellView.h"
+#import "WMTopBarCellView.h"
+#import "WMUser.h"
+#import "WMBarDetailViewController.h"
 
-@interface WMHomeTableViewController : UITableViewController <WMNetworkManagerDelegate>
-
--(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo error:(NSError *)error;
+@interface WMHomeTableViewController : UITableViewController 
 
 @end

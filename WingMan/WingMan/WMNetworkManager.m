@@ -8,17 +8,46 @@
 //  Singleton handling network requests to the Rails API for WingMan.
 
 #import "WMNetworkManager.h"
+#ifdef DEBUG
+#define BASE_URL (@"http://wingman-stage.herokuapp.com/api/v1/")
+#else
+#define BASE_URL (@"http://www.get-wingman.com/api/v1/")
+#endif
 
 @implementation WMNetworkManager
 
-+(NSString *)url:(NSString *)userId
+static NSString *const sessionSubdomain = @"sessions/new?access_token=";
+static NSString *const Subdomain = @"sessions/new?access_token=";
+
++(WMNetworkManager *)sharedInstance
 {
-    return [[@"http://www.get-wingman.com/api/v1/bars?user_id=" stringByAppendingString:userId] stringByAppendingString:@"&lat=42.0478396&lon=-87.6807489"];
+    static WMNetworkManager *_sharedInstance = nil;
+    dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[WMNetworkManager alloc] init];
+    });
+    return _sharedInstance;
+}
+
+-(id)init
+{
+    if (!self) {
+        self = [super init];
+    }
+    return self;
+}
+
+-(void)requestSessionWithAccessToken:(NSString *)accessToken completionBlock:(void (^)(NSDictionary *response, NSError *error))block
+{
+    NSString *string = [NSString stringWithFormat:@"%@sessions/new?access_token=", BASE_URL];
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 }
 
 - (void)requestAllBars:(NSString *)userId
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[WMNetworkManager url:userId]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:BASE_URL]];
+    NSLog(@"%@", BASE_URL);
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         if (connectionError) {
             NSLog(@"%@", connectionError.description);

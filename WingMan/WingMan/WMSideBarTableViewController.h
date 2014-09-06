@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "WMUser.h"
 
-@interface WMSideBarTableViewController : UITableViewController
+@interface WMSideBarTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @end

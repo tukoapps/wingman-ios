@@ -7,6 +7,7 @@
 //
 
 #import "WMLoginViewController.h"
+
 @interface WMLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
@@ -43,14 +44,15 @@
 
 -(void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user
 {
-    NSLog(@"%@", [[FBSession activeSession] accessTokenData]);
+    NSString *accessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+    NSLog(@"%@", accessToken);
     return;
 }
 
 -(void)presentHomeView
 {
-    WMHomeTableViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeController"];
-    [self presentViewController:homeViewController animated:NO completion:nil];
+    [[WMUser user] userLoggedIn];
+    [self performSegueWithIdentifier:@"login" sender:self];
 }
 
 -(void)loginViewShowingLoggedInUser:(FBLoginView *)loginView

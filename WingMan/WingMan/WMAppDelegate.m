@@ -7,15 +7,46 @@
 //
 
 #import "WMAppDelegate.h"
+#import "WMHomeTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "WMRestKitManager.h"
+#import "WMUser.h"
 
 @implementation WMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    [FBLoginView class];
+    [WMRestKitManager sharedManager];
+    [WMUser user];
+    [self setRootViewController];
     return YES;
+}
+
+-(void)setRootViewController
+{
+    // check if the user is on an iPad or iPhone
+    NSString *storyboardName;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        storyboardName = @"Main_iPad";
+    } else {
+        storyboardName = @"Main_iPhone";
+    }    // Override point for customization after application launch.
+    [FBLoginView class];
+    NSString *accessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+
+    // bypass login screen if user is already logged in
+    if (accessToken) {
+        WMHomeTableViewController *home = [[UIStoryboard storyboardWithName:storyboardName bundle:nil] instantiateViewControllerWithIdentifier:@"home"];
+        self.window.rootViewController = home;
+        [[WMUser user] userLoggedIn];
+    }   
+}
+
+-(void)didLogOut
+{
+    [self.window setRootViewController:[[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"login"]];
+    [[FBSession activeSession] closeAndClearTokenInformation];
+    [[WMUser user] userLoggedOut];
 }
 
 - (BOOL)application:(UIApplication *)application

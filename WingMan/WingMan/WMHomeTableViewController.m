@@ -11,37 +11,23 @@
 @interface WMHomeTableViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (strong, nonatomic) NSArray *barInfo;
-@property (strong, nonatomic) WMNetworkManager *networkManager;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
 @implementation WMHomeTableViewController
 
--(void)NetworkManagerDidReturnInfo:(NSArray *)barInfo error:(NSError *)error
+-(UIImage *)getImageForCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
 {
-    if (error != nil) {
-        if ([error.domain isEqualToString:NSURLErrorDomain]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Wingman is having trouble connecting to the internet right now. Please try to connect again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            if (row == 0) {
+                [((WMTopBarCellView *)cell) setLogoImage:[UIImage imageWithData:data]];
+                return;
+            }
+            [cell setLogoImage:[UIImage imageWithData:data]];
         }
-    }
-    _barInfo = barInfo;
-    [self.tableView reloadData];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
-
--(UIImage *)getImageForCell:(WMBarCellView *)cell url:(NSString *)url
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [cell setLogoImage:[UIImage imageWithData:data]];
     }];
     return nil;
 }
@@ -50,10 +36,55 @@
 {
     [super viewDidLoad];
     [self initSideBar];
-    _barInfo = [[NSArray alloc] init];
-    NSLog(@"%@", [[FBSession activeSession] accessTokenData]);
-    [self initNetworkManager];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WMBarCell" bundle:nil] forCellReuseIdentifier:@"barCell"];
+    [self initSpinner];
+    self.barInfo = [[NSArray alloc] init];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMBarCell" bundle:nil] forCellReuseIdentifier:@"bar_cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMTopBarCell" bundle:nil] forCellReuseIdentifier:@"top_bar_cell"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBars) name:@"WMUserUpdatedLocation" object:nil];
+    if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
+        [self fetchBars];
+    }
+}
+
+-(void)initSpinner
+{
+    // show activity spinner
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake(self.view.frame.size.width / 2.0, (self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height) / 2.0);
+    [self.spinner startAnimating];
+    [self.tableView addSubview:self.spinner];
+}
+
+- (void)fetchBars {
+    WMUser *user = [WMUser user];
+    NSDictionary *requestParams = @{@"user_id" :user.uniqueId, @"lat" : user.lat, @"lon" : user.lon};
+    
+    [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
+            self.barInfo = mappingResult.array;
+            [self.spinner removeFromSuperview];
+            [self.tableView reloadData];
+        }
+        failure:^(RKObjectRequestOperation *operation, NSError *error){
+            NSLog(@"%@", error);
+        }];
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"bar_detail" sender:indexPath];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"bar_detail"]) {
+        WMBarDetailViewController *barDetailController = (WMBarDetailViewController *)[segue destinationViewController];
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
+        barDetailController.bar = bar;
+        WMBarCellView *barCell = (WMBarCellView *)[self.tableView cellForRowAtIndexPath:indexPath];
+        barDetailController.barImage = [barCell getImage];
+    }
 }
 
 -(void)initSideBar
@@ -61,13 +92,6 @@
     self.sideBarButton.target = self.revealViewController;
     self.sideBarButton.action = @selector(revealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-}
-
--(void)initNetworkManager
-{
-    self.networkManager = [[WMNetworkManager alloc] init];
-    self.networkManager.delegate = self;
-    [self.networkManager requestAllBars:@"10152715211682573"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,20 +114,31 @@
     return [self.barInfo count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: externalize table cell row height
+    if (indexPath.row == 0) {
+        return 120.0;
+    }
+    return 90.0;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WMBarCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"barCell" forIndexPath:indexPath];
-    
+    if (indexPath.row == 0) {
+        WMTopBarCellView *cell = (WMTopBarCellView *)[tableView dequeueReusableCellWithIdentifier:@"top_bar_cell"];
+        return cell;
+    }
+    WMBarCellView *cell = (WMBarCellView *)[tableView dequeueReusableCellWithIdentifier:@"bar_cell"];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(WMBarCellView *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.barInfo count] > 0) {
-        WMBarInfo *barInfo = [self.barInfo objectAtIndex:indexPath.row];
-        [self getImageForCell:cell url:barInfo.logoUrl];
-        [cell setDataWithInfo:barInfo];
+        WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
+        [self getImageForCell:cell url:bar.logoUrl row:indexPath.row];
+        [cell setDataWithInfo:bar];
     }
 }
 
