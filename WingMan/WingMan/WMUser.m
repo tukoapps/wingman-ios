@@ -52,9 +52,9 @@
 
 -(void)userLoggedIn
 {
-    [[RKObjectManager sharedManager] getObject:self path:nil parameters:nil success:
+    [[RKObjectManager sharedManager] getObject:self path:nil parameters:@{@"access_token" :[[FBSession activeSession] accessTokenData].accessToken} success:
          ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-             NSLog(@"%@", self.uniqueId);
+             NSLog(@"%@", self.firstName);
              [[NSNotificationCenter defaultCenter] postNotificationName:@"WMUserFetchedUser" object:nil];
              [self initLocationManager];
          } failure:^(RKObjectRequestOperation *operation, NSError *error) {

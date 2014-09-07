@@ -51,8 +51,16 @@
 
 -(void)presentHomeView
 {
-    [[WMUser user] userLoggedIn];
     [self performSegueWithIdentifier:@"login" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"login"]) {
+        if ([[FBSession activeSession] accessTokenData]) {
+            [[WMUser user] userLoggedIn];
+        }
+    }
 }
 
 -(void)loginViewShowingLoggedInUser:(FBLoginView *)loginView

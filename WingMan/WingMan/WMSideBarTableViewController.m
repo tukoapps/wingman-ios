@@ -42,8 +42,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:@"WMUserFetchedUser" object:nil];
+    [super viewDidLoad];
 }
 
 -(void)updateUserInfo

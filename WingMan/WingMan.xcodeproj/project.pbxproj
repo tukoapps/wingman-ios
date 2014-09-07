@@ -325,6 +325,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = TukoApps;
 				TargetAttributes = {
+					DC86FF5619857F9A00AF8C4A = {
+						DevelopmentTeam = U3R99S3S4W;
+					};
 					DC86FF7A19857F9A00AF8C4A = {
 						TestTargetID = DC86FF5619857F9A00AF8C4A;
 					};
@@ -560,6 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -568,7 +572,7 @@
 				GCC_PREFIX_HEADER = "WingMan/WingMan-Prefix.pch";
 				INFOPLIST_FILE = "WingMan/WingMan-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98CDB0F0-44A3-4515-AE4F-C1AA11694ADD";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -580,6 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -588,7 +593,7 @@
 				GCC_PREFIX_HEADER = "WingMan/WingMan-Prefix.pch";
 				INFOPLIST_FILE = "WingMan/WingMan-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98CDB0F0-44A3-4515-AE4F-C1AA11694ADD";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @class WMUser;
 

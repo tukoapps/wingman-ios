@@ -43,7 +43,7 @@
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:BASE_URL]];
     RKRouter *router = [[RKRouter alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]];
     objectManager.router = router;
-    [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[WMUser class] pathPattern:[NSString stringWithFormat:@"sessions/new?access_token=%@", [[[FBSession activeSession] accessTokenData] accessToken]] method:RKRequestMethodGET]];
+    [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:[WMUser class] pathPattern:[NSString stringWithFormat:@"sessions/new"]   method:RKRequestMethodGET]];
 }
 
 -(void)initRKObjectMappings
