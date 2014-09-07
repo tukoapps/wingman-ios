@@ -1,10 +1,13 @@
 WingMan - iOS
 ===========
 
-Tech:
+Libraries Used:
 ---------
 
 * [FacebookLogin] sdk for login
+* <a href="http://cocoapods.org/">Cocoapods</a> for dependency management
+* <a href="http://restkit.org/">RestKit</a> for networking and object mapping
+
 
 Activities:
 ---------
