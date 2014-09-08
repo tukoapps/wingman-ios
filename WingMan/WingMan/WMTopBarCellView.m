@@ -18,6 +18,7 @@
 
 @implementation WMTopBarCellView
 
+// override WMBarCellView to add background image
 -(void)setLogoImage:(UIImage *)image
 {
     self.logo.image = image;

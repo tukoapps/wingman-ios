@@ -17,6 +17,8 @@
 
 @implementation WMHomeTableViewController
 
+#warning - need to check for no network connection and display error message
+
 -(UIImage *)getImageForCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -35,15 +37,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // custom initialization
     [self initSideBar];
     [self initSpinner];
+    [self initCustomCells];
     self.barInfo = [[NSArray alloc] init];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WMBarCell" bundle:nil] forCellReuseIdentifier:@"bar_cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WMTopBarCell" bundle:nil] forCellReuseIdentifier:@"top_bar_cell"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBars) name:@"WMUserUpdatedLocation" object:nil];
+    [self addNotificationObservers];
+   
+    // Initial check: may have just closed the app, but user info is still valid
     if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
         [self fetchBars];
     }
+}
+
+-(void)addNotificationObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBars) name:@"WMUserUpdatedLocation" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activateSideBar) name:@"WMUserFetchedUser" object:nil];
+}
+
+-(void)initCustomCells
+{
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMBarCell" bundle:nil] forCellReuseIdentifier:@"bar_cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WMTopBarCell" bundle:nil] forCellReuseIdentifier:@"top_bar_cell"];
 }
 
 -(void)initSpinner
@@ -62,6 +78,8 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
             self.barInfo = mappingResult.array;
             [self.spinner removeFromSuperview];
+            // before loading, tableview's separators are removed since the cells resize
+            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
             [self.tableView reloadData];
         }
         failure:^(RKObjectRequestOperation *operation, NSError *error){
@@ -91,6 +109,10 @@
 {
     self.sideBarButton.target = self.revealViewController;
     self.sideBarButton.action = @selector(revealToggle:);
+}
+
+-(void)activateSideBar
+{
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
