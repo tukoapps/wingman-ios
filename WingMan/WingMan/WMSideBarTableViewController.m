@@ -46,6 +46,18 @@
     [super viewDidLoad];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.delegate WMSideBarWillAppear];
+    [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.delegate WMSideBarWillDisappear];
+    [super viewWillDisappear:animated];
+}
+
 -(void)updateUserInfo
 {
     self.userName.text = [NSString stringWithFormat:@"%@ %@", [WMUser user].firstName, [WMUser user].lastName];

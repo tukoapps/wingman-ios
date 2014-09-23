@@ -19,7 +19,8 @@
 #import "WMTopBarCellView.h"
 #import "WMUser.h"
 #import "WMBarDetailViewController.h"
+#import "WMSideBarTableViewController.h"
 
-@interface WMHomeTableViewController : UITableViewController 
+@interface WMHomeTableViewController : UITableViewController <WMSideBarTableViewControllerDelegate>
 
 @end

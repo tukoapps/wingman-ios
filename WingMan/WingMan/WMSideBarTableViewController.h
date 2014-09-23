@@ -10,6 +10,17 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "WMUser.h"
 
+@class WMSideBarTableViewController;
+
+@protocol WMSideBarTableViewControllerDelegate <NSObject>
+
+-(void)WMSideBarWillAppear;
+-(void)WMSideBarWillDisappear;
+
+@end
+
 @interface WMSideBarTableViewController : UITableViewController <UIActionSheetDelegate>
+
+@property (strong, nonatomic) id<WMSideBarTableViewControllerDelegate> delegate;
 
 @end

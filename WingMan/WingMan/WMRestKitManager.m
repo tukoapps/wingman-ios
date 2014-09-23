@@ -10,11 +10,7 @@
 #import "WMRestKitManager.h"
 
 // set the API URL dynamically based on environment
-#ifdef DEBUG
-#define BASE_URL (@"http://wingman-stage.herokuapp.com/api/v1/")
-#else
-#define BASE_URL (@"www.get-wingman.com/api/v1/")
-#endif
+#define BASE_URL (@"http://www.get-wingman.com/api/v1/")
 
 @implementation WMRestKitManager
 
@@ -50,12 +46,13 @@
 {
     [self initWMUserObjectMapping];
     [self initWMBarInfoObjectMapping];
+    [self initWMEventObjectMapping];
 }
 
 -(void)initWMUserObjectMapping
 {
-    RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[WMUser class]];
-    [articleMapping addAttributeMappingsFromDictionary:@{
+    RKObjectMapping *userMapping = [RKObjectMapping mappingForClass:[WMUser class]];
+    [userMapping addAttributeMappingsFromDictionary:@{
                                                          @"id": @"uniqueId",
                                                          @"first_name": @"firstName",
                                                          @"last_name": @"lastName",
@@ -68,14 +65,14 @@
                                                          @"created_at" : @"createdAt",
                                                          @"updated_at" : @"updatedAt"
                                                          }];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articleMapping method:RKRequestMethodAny pathPattern:@"sessions/new" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:userMapping method:RKRequestMethodAny pathPattern:@"sessions/new" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
 }
 
 -(void)initWMBarInfoObjectMapping
 {
-     RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[WMBar class]];
-    [articleMapping addAttributeMappingsFromDictionary:@{
+     RKObjectMapping* barMapping = [RKObjectMapping mappingForClass:[WMBar class]];
+    [barMapping addAttributeMappingsFromDictionary:@{
                                                          @"id": @"uniqueId",
                                                          @"name": @"name",
                                                          @"yelp_id": @"yelpId",
@@ -98,8 +95,33 @@
                                                          @"distance" : @"distance",
                                                          @"bearing" : @"bearing"
                                                          }];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articleMapping method:RKRequestMethodAny pathPattern:@"bars" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:barMapping method:RKRequestMethodAny pathPattern:@"bars" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
+}
+
+-(void)initWMEventObjectMapping
+{
+    RKObjectMapping *eventMapping = [[RKObjectMapping alloc] initWithClass:[WMEvent class]];
+    [eventMapping addAttributeMappingsFromDictionary:@{ @"id" : @"uniqueId",
+                                                       @"mobile_user_id" : @"mobileUserId",
+                                                       @"bar_id" : @"barId",
+                                                       @"elapsed_minutes" : @"elapsedMinutes",
+                                                       @"created_at" : @"createdAt",
+                                                        @"updated_at" : @"updatedAt"}];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping method:RKRequestMethodAny pathPattern:@"locations/new" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
+}
+
+-(void)updateUserLocation
+{
+    //NSDictionary *params = @{@"user_id" : [WMUser user].uniqueId, @"lat" : [WMUser user].lat, @"lon" : [WMUser user].lon };
+    NSDictionary *params = @{@"user_id" : [NSNumber numberWithInt:5], @"lat" : [NSNumber numberWithDouble:42.0478396], @"lon" : [NSNumber numberWithDouble:-87.6807489]};
+    [[RKObjectManager sharedManager] getObjectsAtPath:@"locations/new" parameters:params
+        success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            NSLog(@"%@", mappingResult);
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            NSLog(error.description);
+        }];
 }
 
 @end

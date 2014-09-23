@@ -12,9 +12,11 @@
 #import <RestKit/RestKit.h>
 #import "WMUser.h"
 #import "WMBar.h"
+#import "WMEvent.h"
 
 @interface WMRestKitManager : NSObject
 
 +(WMRestKitManager *)sharedManager;
+-(void)updateUserLocation;
 
 @end

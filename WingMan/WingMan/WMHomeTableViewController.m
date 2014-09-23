@@ -78,6 +78,9 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
             self.barInfo = mappingResult.array;
             [self.spinner removeFromSuperview];
+            // reset update timer
+        
+            [[WMRestKitManager sharedManager] updateUserLocation];
             // before loading, tableview's separators are removed since the cells resize
             [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
             [self.tableView reloadData];
@@ -109,11 +112,30 @@
 {
     self.sideBarButton.target = self.revealViewController;
     self.sideBarButton.action = @selector(revealToggle:);
+    WMSideBarTableViewController *sideBar = (WMSideBarTableViewController *)self.revealViewController.rearViewController;
+    sideBar.delegate = self;
+    if (self.sideBarButton.enabled) {
+        self.sideBarButton.enabled = NO;
+        [self.view removeGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
 }
 
 -(void)activateSideBar
 {
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.sideBarButton.enabled = YES;
+}
+
+-(void)WMSideBarWillAppear
+{
+    self.tableView.scrollEnabled = NO;
+    self.tableView.allowsSelection = NO;
+}
+
+-(void)WMSideBarWillDisappear
+{
+    self.tableView.scrollEnabled = YES;
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)didReceiveMemoryWarning

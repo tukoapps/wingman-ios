@@ -26,6 +26,7 @@
 		DC86FF8919857F9A00AF8C4A /* WingManTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF8819857F9A00AF8C4A /* WingManTests.m */; };
 		DC86FF9419857FC900AF8C4A /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */; };
 		DC86FF961985818C00AF8C4A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF951985818C00AF8C4A /* FacebookSDK.framework */; };
+		DCB4DDCA19CDF98900D226B7 /* WMEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB4DDC919CDF98900D226B7 /* WMEvent.m */; };
 		DCB6432919B7EF55000FE84A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF5A19857F9A00AF8C4A /* Foundation.framework */; };
 		DCB6432C19B7FA80000FE84A /* WMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6432B19B7FA80000FE84A /* WMUser.m */; };
 		DCD54D0719B7EA2C001AEBFD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD54D0619B7EA2C001AEBFD /* Security.framework */; };
@@ -83,6 +84,8 @@
 		DC86FF9219857FC900AF8C4A /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
 		DC86FF9319857FC900AF8C4A /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
 		DC86FF951985818C00AF8C4A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		DCB4DDC819CDF98900D226B7 /* WMEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMEvent.h; sourceTree = "<group>"; };
+		DCB4DDC919CDF98900D226B7 /* WMEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMEvent.m; sourceTree = "<group>"; };
 		DCB6432A19B7FA80000FE84A /* WMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUser.h; sourceTree = "<group>"; };
 		DCB6432B19B7FA80000FE84A /* WMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUser.m; sourceTree = "<group>"; };
 		DCD54D0619B7EA2C001AEBFD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -234,6 +237,8 @@
 				DCFEF2171985D91000E93EDE /* WMBar.m */,
 				DCB6432A19B7FA80000FE84A /* WMUser.h */,
 				DCB6432B19B7FA80000FE84A /* WMUser.m */,
+				DCB4DDC819CDF98900D226B7 /* WMEvent.h */,
+				DCB4DDC919CDF98900D226B7 /* WMEvent.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				DCFEF20C1985C60A00E93EDE /* WMSideBarTableViewController.m in Sources */,
 				DCB6432C19B7FA80000FE84A /* WMUser.m in Sources */,
 				DCFEA2F319950BE1001C7007 /* WMBarCellView.m in Sources */,
+				DCB4DDCA19CDF98900D226B7 /* WMEvent.m in Sources */,
 				DCFEF2181985D91000E93EDE /* WMBar.m in Sources */,
 				DC41211219BBA1D100C51C39 /* WMBarDetailViewController.m in Sources */,
 				DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */,
