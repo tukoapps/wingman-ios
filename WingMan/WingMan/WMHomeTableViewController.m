@@ -78,8 +78,8 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
             self.barInfo = mappingResult.array;
             [self.spinner removeFromSuperview];
-            // reset update timer
         
+            // reset update timer
             [[WMRestKitManager sharedManager] updateUserLocation];
             // before loading, tableview's separators are removed since the cells resize
             [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
