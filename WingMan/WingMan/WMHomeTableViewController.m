@@ -50,6 +50,7 @@
     // custom initialization
     [self initSideBar];
     [self initSpinner];
+    [self initRefreshControl];
     [self initCustomCells];
     self.barInfo = [[NSArray alloc] init];
     [self addNotificationObservers];
@@ -58,6 +59,13 @@
     if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
         [self fetchBars];
     }
+}
+
+-(void)initRefreshControl
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(fetchBars) forControlEvents:UIControlEventValueChanged];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -102,6 +110,7 @@
             // before loading, tableview's separators are removed since the cells resize
             [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
         failure:^(RKObjectRequestOperation *operation, NSError *error){
             NSLog(@"%@", error);
@@ -146,14 +155,17 @@
 
 -(void)WMSideBarWillAppear
 {
-    self.tableView.scrollEnabled = NO;
-    self.tableView.allowsSelection = NO;
+    //self.tableView.scrollEnabled = NO;
+    //self.tableView.allowsSelection = NO;
+    //self.tableView.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = NO;
 }
 
 -(void)WMSideBarWillDisappear
 {
-    self.tableView.scrollEnabled = YES;
-    self.tableView.allowsSelection = YES;
+    //self.tableView.scrollEnabled = YES;
+    //self.tableView.allowsSelection = YES;
+    self.view.userInteractionEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning

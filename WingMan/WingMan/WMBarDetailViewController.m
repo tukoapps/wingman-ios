@@ -95,8 +95,40 @@
     } else {
         self.barDescription.text = @"Description: ";
     }
-    
+
     [super viewDidLoad];
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandDescriptionView)];
+    self.barDescription.userInteractionEnabled = YES;
+    [self.barDescription addGestureRecognizer:gestureRecognizer];
+    [super viewDidAppear:animated];
+}
+
+-(float)expandDescriptionView
+{
+    float height = [self expectedHeight];
+    CGRect newFrame = [self.barDescription frame];
+    if (height > newFrame.size.height) {
+        newFrame.size.height = height;
+    }
+    [self.barDescription setFrame:newFrame];
+    return newFrame.origin.y + newFrame.size.height;
+}
+
+-(float)expectedHeight
+{
+    [self.barDescription setNumberOfLines:0];
+    [self.barDescription setLineBreakMode:UILineBreakModeWordWrap];
+    
+    CGSize maximumLabelSize = CGSizeMake(self.barDescription.frame.size.width,9999);
+    CGSize expectedLabelSize = [[self.barDescription text] sizeWithFont:[self.barDescription font]
+                                       constrainedToSize:maximumLabelSize
+                                           lineBreakMode:[self.barDescription lineBreakMode]];
+    return expectedLabelSize.height;
+}
+
 
 @end

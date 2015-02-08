@@ -43,6 +43,9 @@
 - (void)viewDidLoad
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserInfo) name:@"WMUserFetchedUser" object:nil];
+    if ([[WMUser user] uniqueId] && [[WMUser user] firstName] && [[WMUser user] lastName]) {
+        [self updateUserInfo];
+    }
     [super viewDidLoad];
 }
 
@@ -61,6 +64,7 @@
 -(void)updateUserInfo
 {
     self.userName.text = [NSString stringWithFormat:@"%@ %@", [WMUser user].firstName, [WMUser user].lastName];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
