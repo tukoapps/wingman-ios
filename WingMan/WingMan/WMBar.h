@@ -34,5 +34,9 @@
 @property (strong, nonatomic) NSNumber *bearing;
 @property (strong, nonatomic) NSString *music;
 @property (strong, nonatomic) NSString *food;
+@property (strong, nonatomic) UIImage *barImage;
+@property (strong, nonatomic) UIImage *barLogo;
+
+-(BOOL)isEqual:(id)object;
 
 @end

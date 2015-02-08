@@ -12,4 +12,9 @@
 
 @implementation WMBar
 
+-(BOOL)isEqual:(id)object
+{
+    return [self.uniqueId isEqual:[object valueForKey:@"uniqueId"]];
+}
+
 @end

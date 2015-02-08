@@ -116,13 +116,16 @@
 
 -(void)updateUserLocation
 {
-    NSDictionary *params = @{@"user_id" : [NSNumber numberWithInt:5], @"lat" : [[WMUser user] lat], @"lon" : [[WMUser user] lon]};
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"locations/new" parameters:params
-        success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            NSLog(@"%@", mappingResult);
-        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            NSLog(error.description);
-        }];
+    WMUser *currentUser = [WMUser user];
+    if ([currentUser uniqueId] && [currentUser lat] && [currentUser lon]) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"user_id" : [[WMUser user] uniqueId], @"lat" : [[WMUser user] lat], @"lon" : [[WMUser user] lon]}];
+        [[RKObjectManager sharedManager] getObjectsAtPath:@"locations/new" parameters:params
+            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                NSLog(@"%@", mappingResult);
+            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                NSLog(error.description);
+            }];
+    }
 }
 
 @end

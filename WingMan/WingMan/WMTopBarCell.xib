@@ -24,7 +24,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw7-HX-TVl">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw7-HX-TVl">
                         <rect key="frame" x="128" y="77" width="159" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -34,8 +34,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="barName" destination="T7q-3f-U15" id="52t-Nz-5FK"/>
+                <outlet property="currentUsers" destination="Dw7-HX-TVl" id="uvl-YT-Nvn"/>
                 <outlet property="logo" destination="gG1-EM-ddz" id="Aif-37-S63"/>
-                <outlet property="rating" destination="Dw7-HX-TVl" id="EiC-Q2-16a"/>
             </connections>
         </tableViewCell>
     </objects>

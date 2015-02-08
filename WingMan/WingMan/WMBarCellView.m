@@ -31,6 +31,7 @@
 {
     self.barName.text = info.name;
     self.currentUsers.text = [NSString stringWithFormat:@"%d", [info.currentUsers integerValue]];
+    self.logo.image = info.barLogo;
 }
 
 -(void)setLogoImage:(UIImage *)image

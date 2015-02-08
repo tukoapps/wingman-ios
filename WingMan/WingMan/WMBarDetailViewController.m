@@ -35,22 +35,11 @@
     return self;
 }
 
--(void)getBarBackgroundImageForUrl:(NSURL *)url
-{
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if (!connectionError) {
-            self.image.image = [UIImage imageWithData:data];
-            return;
-        }
-    }];
-}
-
 - (void)viewDidLoad
 {
     self.image.layer.zPosition = -1000;
     self.logoImage.image = self.barLogo;
-    [self getBarBackgroundImageForUrl:self.bar.imageUrl];
+    self.image.image = self.bar.barImage;
     self.name.attributedText = [[NSAttributedString alloc] initWithString:self.bar.name attributes:@{
                                             NSStrokeWidthAttributeName:[NSNumber numberWithFloat:-3.0],
                                             NSStrokeColorAttributeName:[UIColor blackColor],

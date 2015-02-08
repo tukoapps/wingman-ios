@@ -12,12 +12,15 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (strong, nonatomic) NSArray *barInfo;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
+@property BOOL noInternetWarningShown;
+@property (strong, nonatomic) NSDate *lastInternetWarningShown;
+@property (strong, nonatomic) NSDate *lastBarUpdate;
 
 @end
 
 @implementation WMHomeTableViewController
 
-#warning - need to check for no network connection and display error message
+typedef void(^connection)(BOOL);
 
 -(void)getImageForCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
 {
@@ -54,6 +57,7 @@
     [self initCustomCells];
     self.barInfo = [[NSArray alloc] init];
     [self addNotificationObservers];
+    self.lastBarUpdate = [NSDate dateWithTimeIntervalSince1970:0];
    
     // Initial check: may have just closed the app, but user info is still valid
     if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
@@ -74,6 +78,38 @@
     if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
         [self fetchBars];
     }
+    [self checkInternet:^(BOOL isConnected) {
+        if (isConnected) {
+            return;
+        } else {
+            if (!self.noInternetWarningShown) {
+                [[[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please check your Internet connection and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                self.noInternetWarningShown = YES;
+            }
+            [self.spinner removeFromSuperview];
+            return;
+        }
+    }];
+}
+
+- (void)checkInternet:(connection)block
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.google.com/"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"HEAD";
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
+    request.timeoutInterval = 10.0;
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *connectionError)
+     {
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+         block([(NSHTTPURLResponse *)response statusCode] == 200);
+     }];
 }
 
 -(void)addNotificationObservers
@@ -97,25 +133,71 @@
     [self.tableView addSubview:self.spinner];
 }
 
-- (void)fetchBars {
-    WMUser *user = [WMUser user];
-    NSDictionary *requestParams = @{@"user_id" :user.uniqueId, @"lat" : user.lat, @"lon" : user.lon};
-    
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
-            self.barInfo = mappingResult.array;
-            [self.spinner removeFromSuperview];
-        
-            // reset update timer
-            [[WMRestKitManager sharedManager] updateUserLocation];
-            // before loading, tableview's separators are removed since the cells resize
-            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        }
-        failure:^(RKObjectRequestOperation *operation, NSError *error){
-            NSLog(@"%@", error);
+-(void)fetchBarImages
+{
+    for (int i = 0; i < [self.barInfo count]; i++) {
+        WMBar *bar = [self.barInfo objectAtIndex:i];
+        NSURLRequest *logoUrlRequest = [NSURLRequest requestWithURL:bar.logoUrl];
+        [NSURLConnection sendAsynchronousRequest:logoUrlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (!connectionError) {
+                [bar setBarLogo:[UIImage imageWithData:data]];
+            }
         }];
+        NSURLRequest *imageUrlRequest = [NSURLRequest requestWithURL:bar.imageUrl];
+        [NSURLConnection sendAsynchronousRequest:imageUrlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (!connectionError) {
+                [bar setBarImage:[UIImage imageWithData:data]];
+                if (i == [self.barInfo count] - 1) {
+                    [self.tableView reloadData];
+                }
+            }
+        }];       
+    }
+}
 
+- (void)fetchBars {
+    if ([[NSDate dateWithTimeInterval:120 sinceDate:self.lastBarUpdate] compare:[NSDate date]] == NSOrderedAscending || [self.refreshControl isRefreshing]) {
+        [self checkInternet:^(BOOL isConnected) {
+            if (isConnected) {
+                WMUser *user = [WMUser user];
+                NSString *accessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+                if (accessToken) {
+                    [user userLoggedIn];
+                }
+                if (user && user.lat && user.lon && user.uniqueId) {
+                    NSDictionary *requestParams = @{@"user_id" :user.uniqueId, @"lat" : user.lat, @"lon" : user.lon};
+                    
+                    [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bars" parameters:requestParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult){
+                        [self.spinner removeFromSuperview];
+                        [self.refreshControl endRefreshing];
+                        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+                        if ([self.barInfo count] == 0 || ![[NSSet setWithArray:self.barInfo] isEqual:[NSSet setWithArray:mappingResult.array]]) {
+                            self.barInfo = mappingResult.array;
+                            [self fetchBarImages];
+                            
+                            // reset update timer
+                            self.lastBarUpdate = [NSDate date];
+                            [[WMRestKitManager sharedManager] updateUserLocation];
+                            // before loading, tableview's separators are removed since the cells resize
+                        }
+                    }
+                                                              failure:^(RKObjectRequestOperation *operation, NSError *error){
+                                                                  NSLog(@"%@", error);
+                                                              }];
+                }
+            } else {
+                if (!self.noInternetWarningShown) {
+                    [[[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please check your Internet connection and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                    self.noInternetWarningShown = YES;
+                }
+                if ([self.tableView.subviews containsObject:self.spinner]) {
+                    [self.spinner removeFromSuperview];
+                }
+                [self.refreshControl endRefreshing];
+                return;
+            }
+        }];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,17 +237,14 @@
 
 -(void)WMSideBarWillAppear
 {
-    //self.tableView.scrollEnabled = NO;
-    //self.tableView.allowsSelection = NO;
-    //self.tableView.userInteractionEnabled = NO;
-    self.view.userInteractionEnabled = NO;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.allowsSelection = NO;
 }
 
 -(void)WMSideBarWillDisappear
 {
-    //self.tableView.scrollEnabled = YES;
-    //self.tableView.allowsSelection = YES;
-    self.view.userInteractionEnabled = YES;
+    self.tableView.scrollEnabled = YES;
+    self.tableView.allowsSelection = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,23 +278,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
         WMTopBarCellView *cell = (WMTopBarCellView *)[tableView dequeueReusableCellWithIdentifier:@"top_bar_cell"];
+        [cell setDataWithInfo:bar];
+        [cell setBackgroundImage:bar.barImage];
         return cell;
     }
     WMBarCellView *cell = (WMBarCellView *)[tableView dequeueReusableCellWithIdentifier:@"bar_cell"];
+    [cell setDataWithInfo:bar];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(WMBarCellView *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.barInfo count] > 0) {
-        WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
         if (indexPath.row == 0) {
-            [self getImageForTopBarCell:cell url:bar.imageUrl row:indexPath.row];
+            //[self getImageForTopBarCell:cell url:bar.imageUrl row:indexPath.row];
         }
-        [self getImageForCell:cell url:bar.logoUrl row:indexPath.row];
-        [cell setDataWithInfo:bar];
+        //[self getImageForCell:cell url:bar.logoUrl row:indexPath.row];
     }
 }
 

@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UILabel *barName;
-@property (weak, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UILabel *currentUsers;
 
 @end
 
@@ -22,6 +22,16 @@
 -(void)setLogoImage:(UIImage *)image
 {
     self.logo.image = image;
+}
+
+-(void)setDataWithInfo:(WMBar *)info
+{
+    [super setDataWithInfo:info];
+    self.barName.attributedText = [[NSAttributedString alloc] initWithString:info.name attributes:@{
+                                            NSStrokeWidthAttributeName:[NSNumber numberWithFloat:-3.0],
+                                            NSStrokeColorAttributeName:[UIColor blackColor],
+                                            NSForegroundColorAttributeName:[UIColor whiteColor]
+                                            }];
 }
 
 -(void)setBackgroundImage:(UIImage *)image
