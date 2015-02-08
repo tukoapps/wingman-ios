@@ -12,6 +12,6 @@
 @interface WMBarDetailViewController : UIViewController
 
 @property (strong, nonatomic) WMBar *bar;
-@property (strong, nonatomic) UIImage *barImage;
+@property (strong, nonatomic) UIImage *barLogo;
 
 @end

@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UILabel *barName;
-@property (weak, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UILabel *currentUsers;
 
 @end
 
@@ -30,7 +30,7 @@
 -(void)setDataWithInfo:(WMBar *)info
 {
     self.barName.text = info.name;
-    self.rating.text = [NSString stringWithFormat:@"%@ stars", info.rating];
+    self.currentUsers.text = [NSString stringWithFormat:@"%d", [info.currentUsers integerValue]];
 }
 
 -(void)setLogoImage:(UIImage *)image

@@ -19,7 +19,7 @@
 
 #warning - need to check for no network connection and display error message
 
--(UIImage *)getImageForCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
+-(void)getImageForCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -31,7 +31,17 @@
             [cell setLogoImage:[UIImage imageWithData:data]];
         }
     }];
-    return nil;
+}
+
+-(void)getImageForTopBarCell:(WMBarCellView *)cell url:(NSURL *)url row:(int)row
+{
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (!connectionError) {
+            [((WMTopBarCellView *)cell) setBackgroundImage:[UIImage imageWithData:data]];
+            return;
+        }
+    }];
 }
 
 - (void)viewDidLoad
@@ -45,6 +55,14 @@
     [self addNotificationObservers];
    
     // Initial check: may have just closed the app, but user info is still valid
+    if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
+        [self fetchBars];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     if ([[WMUser user] uniqueId] && [[WMUser user] lat] && [[WMUser user] lon]) {
         [self fetchBars];
     }
@@ -104,7 +122,7 @@
         WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
         barDetailController.bar = bar;
         WMBarCellView *barCell = (WMBarCellView *)[self.tableView cellForRowAtIndexPath:indexPath];
-        barDetailController.barImage = [barCell getImage];
+        barDetailController.barLogo = [barCell getImage];
     }
 }
 
@@ -135,7 +153,7 @@
 -(void)WMSideBarWillDisappear
 {
     self.tableView.scrollEnabled = YES;
-    self.tableView.allowsSelection = NO;
+    self.tableView.allowsSelection = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,6 +199,9 @@
 {
     if ([self.barInfo count] > 0) {
         WMBar *bar = [self.barInfo objectAtIndex:indexPath.row];
+        if (indexPath.row == 0) {
+            [self getImageForTopBarCell:cell url:bar.imageUrl row:indexPath.row];
+        }
         [self getImageForCell:cell url:bar.logoUrl row:indexPath.row];
         [cell setDataWithInfo:bar];
     }

@@ -39,8 +39,13 @@
     CLLocationManager *manager = [[CLLocationManager alloc] init];
     self.locationManager = manager;
     manager.delegate = self;
-    [manager startMonitoringSignificantLocationChanges];
+    manager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [manager startUpdatingLocation];
 }
+
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {

@@ -10,29 +10,29 @@
 	<string>WingMan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>96505F1A-3274-4A0D-AAEF-E2780CE0D906</key>
+		<key>85230BF2405EA14BDB0E7E257A5236C0A18F24E7</key>
 		<string>https://github.com/tukoapps/wingman-ios</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WingMan/WingMan.xcodeproj/project.xcworkspace</string>
+	<string>WingMan/WingMan.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>96505F1A-3274-4A0D-AAEF-E2780CE0D906</key>
+		<key>85230BF2405EA14BDB0E7E257A5236C0A18F24E7</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/tukoapps/wingman-ios</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>96505F1A-3274-4A0D-AAEF-E2780CE0D906</string>
+	<string>85230BF2405EA14BDB0E7E257A5236C0A18F24E7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>96505F1A-3274-4A0D-AAEF-E2780CE0D906</string>
+			<string>85230BF2405EA14BDB0E7E257A5236C0A18F24E7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>wingman-ios</string>
 		</dict>

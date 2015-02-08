@@ -27,11 +27,12 @@
 @property (strong, nonatomic) NSDate *updatedAt;
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *phoneNumber;
-@property (strong, nonatomic) NSString *city;
-@property (strong, nonatomic) NSString *state;
-@property (strong, nonatomic) NSString *neighborhood;
+@property (strong, nonatomic) NSString *barDescription;
+@property (strong, nonatomic) NSString *schedule;
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSNumber *distance;
 @property (strong, nonatomic) NSNumber *bearing;
+@property (strong, nonatomic) NSString *music;
+@property (strong, nonatomic) NSString *food;
 
 @end

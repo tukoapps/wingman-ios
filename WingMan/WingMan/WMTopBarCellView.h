@@ -13,5 +13,6 @@
 @interface WMTopBarCellView : WMBarCellView
 
 -(void)setLogoImage:(UIImage *)image;
+-(void)setBackgroundImage:(UIImage *)image;
 
 @end

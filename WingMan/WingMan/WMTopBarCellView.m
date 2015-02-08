@@ -22,7 +22,11 @@
 -(void)setLogoImage:(UIImage *)image
 {
     self.logo.image = image;
-    self.backgroundColor = [UIColor colorWithPatternImage:[self scaleImage:image ToSizeKeepAspect:CGSizeMake(350, 350)]];
+}
+
+-(void)setBackgroundImage:(UIImage *)image
+{
+    self.backgroundView = [[UIImageView alloc] initWithImage:image];
 }
 
 - (UIImage*)scaleImage: (UIImage *)image ToSizeKeepAspect:(CGSize)size {

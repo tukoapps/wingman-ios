@@ -71,6 +71,7 @@
 
 -(void)initWMBarInfoObjectMapping
 {
+    /*{"id":921,"name":"The Celtic Knot Public House","yelp_id":null,"logo_url":"http://www.drankbank.com/images/cal/celtic_knot_public_house_evanston_il.png","image_url":"http://s3-media4.fl.yelpcdn.com/bphoto/IurKHxpNEVYNmvvDhlQWHg/l.jpg","lat":"42.0479","lon":"-87.680155","review_count":null,"rating":"3.5","price":"3.0","created_at":"2014-09-11T02:18:02.320Z","updated_at":"2015-01-22T04:50:18.271Z","phone_number":"(847) 864-1679","address":"626 Church St Evanston, IL 60201","category":"champagne_bars","description":"","music":"","food":"","drink_price":null,"schedule":"","distance":0.0307560888281247,"bearing":"84.192949393135","current_users":0}*/
      RKObjectMapping* barMapping = [RKObjectMapping mappingForClass:[WMBar class]];
     [barMapping addAttributeMappingsFromDictionary:@{
                                                          @"id": @"uniqueId",
@@ -83,17 +84,18 @@
                                                          @"review_count" : @"reviewCount",
                                                          @"rating" : @"rating",
                                                          @"current_users" : @"currentUsers",
-                                                         @"price" : @"price",
+                                                         @"drink_price" : @"price",
                                                          @"created_at" : @"createdAt",
                                                          @"updated_at" : @"updatedAt",
                                                          @"address" : @"address",
                                                          @"phone_number" : @"phoneNumber",
-                                                         @"city" : @"city",
-                                                         @"state" : @"state",
-                                                         @"neighborhood" : @"neighborhood",
                                                          @"category" : @"category",
                                                          @"distance" : @"distance",
-                                                         @"bearing" : @"bearing"
+                                                         @"bearing" : @"bearing",
+                                                         @"description" : @"barDescription",
+                                                         @"schedule" : @"schedule",
+                                                         @"music" : @"music",
+                                                         @"food" : @"food"
                                                          }];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:barMapping method:RKRequestMethodAny pathPattern:@"bars" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor];
@@ -114,8 +116,7 @@
 
 -(void)updateUserLocation
 {
-    //NSDictionary *params = @{@"user_id" : [WMUser user].uniqueId, @"lat" : [WMUser user].lat, @"lon" : [WMUser user].lon };
-    NSDictionary *params = @{@"user_id" : [NSNumber numberWithInt:5], @"lat" : [NSNumber numberWithDouble:42.0478396], @"lon" : [NSNumber numberWithDouble:-87.6807489]};
+    NSDictionary *params = @{@"user_id" : [NSNumber numberWithInt:5], @"lat" : [[WMUser user] lat], @"lon" : [[WMUser user] lon]};
     [[RKObjectManager sharedManager] getObjectsAtPath:@"locations/new" parameters:params
         success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             NSLog(@"%@", mappingResult);

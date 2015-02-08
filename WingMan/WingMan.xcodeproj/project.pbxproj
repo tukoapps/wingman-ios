@@ -11,6 +11,7 @@
 		DC41210E19BB922600C51C39 /* WMTopBarCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC41210C19BB922600C51C39 /* WMTopBarCellView.m */; };
 		DC41210F19BB922600C51C39 /* WMTopBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC41210D19BB922600C51C39 /* WMTopBarCell.xib */; };
 		DC41211219BBA1D100C51C39 /* WMBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC41211119BBA1D100C51C39 /* WMBarDetailViewController.m */; };
+		DC6F35AF1A8739BB00D676B1 /* WMPaddedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6F35AE1A8739BB00D676B1 /* WMPaddedLabel.m */; };
 		DC86FF5D19857F9A00AF8C4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF5C19857F9A00AF8C4A /* CoreGraphics.framework */; };
 		DC86FF5F19857F9A00AF8C4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC86FF5E19857F9A00AF8C4A /* UIKit.framework */; };
 		DC86FF6519857F9A00AF8C4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC86FF6319857F9A00AF8C4A /* InfoPlist.strings */; };
@@ -56,13 +57,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		232EE370EDFB4CF5B86208B7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		82DCC533468D42BC8AF2A45D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B832D701EE0ABA53B6B57A54 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B8388AC1FA8E7F56FEE90473 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DC41210B19BB922600C51C39 /* WMTopBarCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTopBarCellView.h; sourceTree = "<group>"; };
 		DC41210C19BB922600C51C39 /* WMTopBarCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTopBarCellView.m; sourceTree = "<group>"; };
 		DC41210D19BB922600C51C39 /* WMTopBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMTopBarCell.xib; sourceTree = "<group>"; };
 		DC41211019BBA1D100C51C39 /* WMBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBarDetailViewController.h; sourceTree = "<group>"; };
 		DC41211119BBA1D100C51C39 /* WMBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBarDetailViewController.m; sourceTree = "<group>"; };
+		DC6F35AD1A8739BB00D676B1 /* WMPaddedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPaddedLabel.h; sourceTree = "<group>"; };
+		DC6F35AE1A8739BB00D676B1 /* WMPaddedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPaddedLabel.m; sourceTree = "<group>"; };
 		DC86FF5719857F9A00AF8C4A /* WingMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC86FF5A19857F9A00AF8C4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DC86FF5C19857F9A00AF8C4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +146,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16267FF9EEB3D090A5EC9C16 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B832D701EE0ABA53B6B57A54 /* Pods.debug.xcconfig */,
+				B8388AC1FA8E7F56FEE90473 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DC86FF4E19857F9A00AF8C4A = {
 			isa = PBXGroup;
 			children = (
@@ -149,7 +162,7 @@
 				DC86FF8219857F9A00AF8C4A /* WingManTests */,
 				DC86FF5919857F9A00AF8C4A /* Frameworks */,
 				DC86FF5819857F9A00AF8C4A /* Products */,
-				232EE370EDFB4CF5B86208B7 /* Pods.xcconfig */,
+				16267FF9EEB3D090A5EC9C16 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +280,8 @@
 				DCFEA2F719952401001C7007 /* WMBarCell.xib */,
 				DCFEA2F119950BE1001C7007 /* WMBarCellView.h */,
 				DCFEA2F219950BE1001C7007 /* WMBarCellView.m */,
+				DC6F35AD1A8739BB00D676B1 /* WMPaddedLabel.h */,
+				DC6F35AE1A8739BB00D676B1 /* WMPaddedLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -330,9 +345,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = TukoApps;
 				TargetAttributes = {
-					DC86FF5619857F9A00AF8C4A = {
-						DevelopmentTeam = U3R99S3S4W;
-					};
 					DC86FF7A19857F9A00AF8C4A = {
 						TestTargetID = DC86FF5619857F9A00AF8C4A;
 					};
@@ -395,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8609A80F126645D4A83869DB /* Check Pods Manifest.lock */ = {
@@ -428,6 +440,7 @@
 				DCB4DDCA19CDF98900D226B7 /* WMEvent.m in Sources */,
 				DCFEF2181985D91000E93EDE /* WMBar.m in Sources */,
 				DC41211219BBA1D100C51C39 /* WMBarDetailViewController.m in Sources */,
+				DC6F35AF1A8739BB00D676B1 /* WMPaddedLabel.m in Sources */,
 				DCFEF1FC1985B75C00E93EDE /* SWRevealViewController.m in Sources */,
 				DC41210E19BB922600C51C39 /* WMTopBarCellView.m in Sources */,
 				DCE8373E19B8F73D00D44826 /* WMRestKitManager.m in Sources */,
@@ -564,7 +577,7 @@
 		};
 		DC86FF8D19857F9A00AF8C4A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 232EE370EDFB4CF5B86208B7 /* Pods.xcconfig */;
+			baseConfigurationReference = B832D701EE0ABA53B6B57A54 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -585,7 +598,7 @@
 		};
 		DC86FF8E19857F9A00AF8C4A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 232EE370EDFB4CF5B86208B7 /* Pods.xcconfig */;
+			baseConfigurationReference = B8388AC1FA8E7F56FEE90473 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
